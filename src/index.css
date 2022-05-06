@@ -23,12 +23,32 @@ body {
   flex-direction: column;
 }
 
-a,button {
-  all: unset;
-  box-sizing: border-box;
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+button{
+  color: inherit;
+  background-color: initial;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+  font-size: initial;
   cursor: pointer;
+  font-family: inherit;
 }
 
 input[type="text"],input[type="password"] {
-  all: unset;
+  color: inherit;
+  background-color: initial;
+  border-style: initial;
+  border-color: initial;
+  font-family: inherit;
+  font-size: initial;
+  border-width: initial;
+}
+
+input[type="text"]:focus-visible,input[type="password"]:focus-visible {
+  outline: initial;
 }
