@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { createGlobalStyle } from "styled-components";
+import {
+  HashRouter,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
+import Header from './Components/Header/Header';
+import InicioPage from './Pages/InicioPage';
+import Error404Page from './Pages/Error404Page';
+import IniciarSesionPage from './Pages/IniciarSesionPage';
+import FuenteLazer from './Fonts/Lazer84.ttf';
+
+const FontStyles = createGlobalStyle`
+  @font-face {
+    font-family: 'Lazer';
+    src: url(${FuenteLazer}) format('truetype');
+  }
+`;
+
+const AppStyle = styled.div`
+    flex-grow: 1;
+    .NavOculto{
+      height: 75px;
+    }
+    @media(min-width: 920px){
+      .NavOculto{
+        height: 105px;
+      }
+    }
+`;
+
+function AppCss () {
+  return(
+    <AppStyle>
+      <FontStyles/>
+      <Header/>
+      <Outlet/>
+    </AppStyle>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<AppCss/>}>
+          <Route index element={<InicioPage/>}/>
+          <Route path="IniciarSesion" element={<IniciarSesionPage/>}/>
+          <Route path="*" element={<Error404Page/>}/>
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
 
